@@ -123,6 +123,9 @@ You can set the social platform you want to share on using the `socialshare-prov
 - [telegram](#telegram)
 - [viber](#viber)
 - [skype](#skype)
+- [weibo](#weibo)
+- [qzone](#qzone)
+- [line](#line)
 - [sms](#sms)
 
 Please use them all in lowercase (`socialshare-provider="delicious"`)
@@ -283,7 +286,7 @@ Method | Option | Type | Default | Description
 	sharer		| socialshare-url="" 	 |	URL | page URL|	Set the url to share
 	sharer		| socialshare-text="" 	 | String	| false |	Set the content to share
   sharer		| socialshare-via="" 	 | URL | false |		Set the buffer via
-  sharer    | socialshare-media="" | URL | false | Set the image url to share 
+  sharer    | socialshare-media="" | URL | false | Set the image url to share
 
 ####Pocket
 
@@ -385,6 +388,33 @@ Method | Option | Type | Default | Description
   sharer    | socialshare-url=""   |  URL | page URL| Set the url to share
   sharer    | socialshare-text=""  | String | false | Set the content to share
 
+####Weibo
+
+(`socialshare-provider="weibo"`)
+
+Method | Option | Type | Default | Description
+------------- | ------------- | ------------- | ------------- | -------------
+sharer    | socialshare-url=""   |  URL | page URL| Set the url to share
+sharer    | socialshare-text=""  | String | false | Set the content to share
+
+####QZone
+
+(`socialshare-provider="qzone"`)
+
+Method | Option | Type | Default | Description
+------------- | ------------- | ------------- | ------------- | -------------
+sharer    | socialshare-url=""   |  URL | page URL| Set the url to share
+sharer    | socialshare-text=""  | String | false | Set the content to share
+
+####Line
+
+(`socialshare-provider="line"`)
+
+Method | Option | Type | Default | Description
+------------- | ------------- | ------------- | ------------- | -------------
+sharer    | socialshare-url=""   |  URL | page URL| Set the url to share
+sharer    | socialshare-text=""  | String | false | Set the content to share
+
 ####Email
 
 (`socialshare-provider="email"`)
@@ -406,7 +436,7 @@ Method | Option | Type | Default | Description
 ------------- | ------------- | ------------- | ------------- | -------------
   sharer    | socialshare-to="" |  URL | page URL| Set the phone number of the contact
   sharer    | socialshare-text="" | String  | false | Set the content to share
-  
+
 ##Options
 
 ####Sharing Popup Size

@@ -6,7 +6,7 @@
  * http://720kb.github.io/angular-socialshare
  * 
  * MIT license
- * Wed Oct 26 2016
+ * Wed Nov 09 2016
  */
 /*global angular*/
 /*eslint no-loop-func:0, func-names:0*/
@@ -16,7 +16,7 @@
 
   var directiveName = 'socialshare'
     , serviceName = 'Socialshare'
-    , socialshareProviderNames = ['facebook', 'facebook-messenger','sms', 'twitter', 'linkedin', 'google', 'pinterest', 'tumblr', 'reddit', 'stumbleupon', 'buffer', 'digg', 'delicious', 'vk', 'pocket', 'wordpress', 'flipboard', 'xing', 'hackernews', 'evernote', 'whatsapp', 'telegram', 'viber', 'skype', 'email', 'ok', 'weibo', 'qzone', 'line']
+    , socialshareProviderNames = ['facebook', 'facebook-messenger','sms', 'twitter', 'linkedin', 'google', 'pinterest', 'tumblr', 'reddit', 'stumbleupon', 'buffer', 'digg', 'delicious', 'vk', 'pocket', 'wordpress', 'flipboard', 'xing', 'hackernews', 'evernote', 'whatsapp', 'telegram', 'viber', 'skype', 'email', 'ok', 'weibo', 'qzone', 'line', 'kakaotalk']
     , socialshareConfigurationProvider = /*@ngInject*/ function socialshareConfigurationProvider() {
 
       var socialshareConfigurationDefault = [{
@@ -320,7 +320,20 @@
           'provider': 'line',
           'conf': {
             'url': '',
-            'text': ''
+            'text': '',
+            'trigger': 'click',
+            'popupHeight': 600,
+            'popupWidth': 500
+          }
+      },
+      {
+          'provider': 'kakaotalk',
+          'conf': {
+            'url': '',
+            'text': '',
+            'trigger': 'click',
+            'popupHeight': 600,
+            'popupWidth': 500
           }
       }];
 
@@ -872,6 +885,18 @@
         , 'Line', 'toolbar=0,status=0,resizable=yes,width=' + attrs.socialsharePopupWidth + ',height=' + attrs.socialsharePopupHeight
         + ',top=' + ($window.innerHeight - attrs.socialsharePopupHeight) / 2 + ',left=' + ($window.innerWidth - attrs.socialsharePopupWidth) / 2);
     }
+    , kakaotalkShare = function kakaotalkShare($window, attrs) {
+        var urlString = 'https://story.kakao.com/s/share?url=' + encodeURIComponent(attrs.socialshareUrl || $window.location.href);
+
+        if (attrs.socialshareText) {
+          urlString += '&title=' + encodeURIComponent(attrs.socialshareText);
+        }
+
+        $window.open(
+          urlString
+          , 'KakaoTalk', 'toolbar=0,status=0,resizable=yes,width=' + attrs.socialsharePopupWidth + ',height=' + attrs.socialsharePopupHeight
+          + ',top=' + ($window.innerHeight - attrs.socialsharePopupHeight) / 2 + ',left=' + ($window.innerWidth - attrs.socialsharePopupWidth) / 2);
+    }
     , socialshareService = /*@ngInject*/  ['$window', '$log', function socialshareService($window, $log) {
 
       this.emailShare = manageEmailShare;
@@ -905,6 +930,7 @@
       this.weiboShare = weiboShare;
       this.qzoneShare = qzoneShare;
       this.lineShare = lineShare;
+      this.kakaotalkShare = kakaotalkShare;
       this.smsShare = manageSmsShare;
 
       this.share = function shareTrigger(serviceShareConf) {
@@ -1014,6 +1040,10 @@
             this.lineShare($window, serviceShareConf.attrs);
             break;
           }
+          case 'kakaotalk': {
+            this.kakaotalkShare($window, serviceShareConf.attrs);
+            break;
+          }
           default: {
             return;
           }
@@ -1118,6 +1148,7 @@
       , 'weibo': weiboShare
       , 'qzone': qzoneShare
       , 'line': lineShare
+      , 'kakaotalk': kakaotalkShare
     };
 
 
